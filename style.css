@@ -1,0 +1,213 @@
+/* --- Default Styles (for Desktop and Larger Screens) --- */
+body {
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(to right, #ff99cc, #ffcc99);
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative; /* Essential for positioning design images relative to the body */
+    overflow: hidden; /* Hide anything that goes outside the body (especially for absolute positioned elements) */
+}
+
+.birthday-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    max-width: 500px; /* Limits card width on desktop */
+    width: 100%; /* Allows it to fill space up to max-width */
+    transform: rotate(-3deg);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1; /* Ensures card is above design images */
+    position: relative; /* Needed for z-index to work correctly */
+}
+
+.birthday-card:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+h1 {
+    color: #e91e63;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    margin: 20px auto;
+    max-width: 90%;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+.main-birthday-image img {
+    border: 3px solid #e91e63;
+    max-width: 60%; /* Cake image size */
+    display: block;
+    margin: 0 auto;
+}
+
+.message {
+    font-style: italic;
+    color: #666;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* --- General Design Element Styles (Applies to both desktop and mobile) --- */
+.design-element {
+    position: absolute; /* Positions relative to the nearest positioned ancestor (body in this case) */
+    height: auto;
+    object-fit: contain;
+    z-index: 0; /* Ensures these are *behind* the main birthday card */
+    opacity: 0.8;
+    filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));
+}
+
+/* Optional: Animation for a floating effect */
+@keyframes float {
+    0% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
+    50% { transform: translateY(-10px) rotate(var(--rotation, 0deg)); }
+    100% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
+}
+
+.design-element {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Specific positioning for Desktop (or screens wider than 768px) */
+#designImg1 { /* Top-left */
+    width: 15vw;
+    top: 5vh;
+    left: 10vw;
+    transform: rotate(-15deg);
+    --rotation: -15deg;
+}
+#designImg2 { /* Top-right */
+    width: 10vw;
+    top: 15vh;
+    right: 5vw;
+    transform: rotate(20deg);
+    --rotation: 20deg;
+}
+#designImg3 { /* Bottom-left */
+    width: 8vw;
+    bottom: 10vh;
+    left: 2vw;
+    transform: rotate(5deg);
+    --rotation: 5deg;
+}
+#designImg4 { /* Bottom-right */
+    width: 18vw;
+    bottom: 5vh;
+    right: 10vw;
+    transform: rotate(-10deg);
+    --rotation: -10deg;
+}
+
+
+/* --- MOBILE-SPECIFIC STYLES (Applies to screens 768px wide or less) --- */
+@media screen and (max-width: 768px) {
+    body {
+        /* Keep these for centering the card horizontally and vertically */
+        display: flex;
+        justify-content: center; /* Centers horizontally for row, or vertically for column */
+        align-items: center; /* Centers vertically for row, or horizontally for column */
+        min-height: 100vh; /* Ensure body takes full screen height */
+        padding: 20px; /* General padding around the edges */
+        /* NO flex-direction: column here, as it conflicts with absolute positioning relative to body */
+    }
+
+    .birthday-card {
+        width: 90%; /* Let the card take 90% width of the screen */
+        height: auto; /* Allow content to dictate height */
+        margin: auto; /* This helps center it perfectly with flexbox */
+        padding: 15px; /* Adjust padding for mobile */
+        transform: rotate(0deg); /* Remove rotation for cleaner mobile look */
+    }
+
+    /* Adjust font and image sizes inside the card for mobile */
+    .birthday-card h1 {
+        font-size: 1.8em;
+        margin-bottom: 8px;
+    }
+    .birthday-card p {
+        font-size: 0.9em;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+    .birthday-card button {
+        padding: 10px 18px;
+        font-size: 0.9em;
+        margin-top: 15px;
+    }
+    .main-birthday-image img {
+        max-width: 60%; /* Cake size on mobile */
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    /* Positioning for Design Elements on Mobile - Pushed away from center */
+    #designImg1 { /* Top-left design */
+        width: 25vw; /* Make them larger for visibility */
+        top: 5vh; /* Offset from top */
+        left: 5vw; /* Offset from left */
+        transform: rotate(-15deg);
+    }
+
+    #designImg2 { /* Top-right design */
+        width: 20vw;
+        top: 5vh; /* Offset from top */
+        right: 5vw; /* Offset from right */
+        transform: rotate(20deg);
+    }
+
+    #designImg3 { /* Bottom-left design */
+        width: 18vw;
+        bottom: 5vh; /* Offset from bottom */
+        left: 5vw; /* Offset from left */
+        transform: rotate(5deg);
+    }
+
+    #designImg4 { /* Bottom-right design */
+        width: 28vw;
+        bottom: 5vh; /* Offset from bottom */
+        right: 5vw; /* Offset from right */
+        transform: rotate(-10deg);
+    }
+
+    /* IMPORTANT: If you have more design images, add their #designImgX rules here for mobile!
+       Adjust 'width' (vw), 'top'/'bottom' (vh), 'left'/'right' (vw) to place them as desired. */
+}
